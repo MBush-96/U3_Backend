@@ -1,8 +1,9 @@
 const subRedditRoutes = require('express').Router()
 const subRedditController = require('../controllers/subRedditController')
 
-subRedditRoutes.post('/create', subRedditController.create)
+subRedditRoutes.get('/all', subRedditController.getAllSubReddits)
 subRedditRoutes.get('/sr/:name', subRedditController.getSubByName)
-subRedditRoutes.post('/sr/', subRedditController.getAllPosts)
+subRedditRoutes.post('/create', subRedditController.create)
+subRedditRoutes.post('/sr', subRedditController.getAllPosts)
 
 module.exports = subRedditRoutes

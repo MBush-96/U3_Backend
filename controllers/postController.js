@@ -7,7 +7,9 @@ postController.newPost = async (req, res) => {
             title: req.body.postTitle,
             body: req.body.postBody,
             userId: req.body.userId,
-            subredditId: req.body.subRedditId
+            subredditId: req.body.subRedditId,
+            numlikes: 0,
+            numdislikes: 0
         })
         res.json({post})
     } catch (error) {

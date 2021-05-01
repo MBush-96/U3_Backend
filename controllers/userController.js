@@ -8,7 +8,9 @@ userController.signup = async (req, res) => {
             where: {
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                karma: req.body.karma,
+                profileimage: req.body.profileimage
             }
         })
         res.json({user})

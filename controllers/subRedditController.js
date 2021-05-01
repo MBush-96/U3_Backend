@@ -38,4 +38,13 @@ subRedditController.getAllPosts = async (req, res) => {
     }
 }
 
+subRedditController.getAllSubReddits = async (req, res) => {
+    try {
+        const subs = await models.subreddit.findAll()
+        res.json({subs})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
 module.exports = subRedditController
