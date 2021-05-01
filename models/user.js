@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.belongsToMany(models.post, { through: 'comment' })
+      models.user.hasMany(models.post)
     }
     verifyPassword(pass) {
       return bcrypt.compareSync(pass, this.password)
@@ -40,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     karma: DataTypes.INTEGER,
-    profileImage: DataTypes.STRING,
-    followedSubs: DataTypes.STRING
+    profileimage: DataTypes.STRING,
+    followedsubs: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user',

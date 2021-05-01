@@ -1,5 +1,4 @@
 const models = require('../models')
-const bcrypt = require('bcryptjs')
 const userController = {}
 
 
@@ -29,6 +28,19 @@ userController.login = async (req, res) => {
         if(user.verifyPassword(req.body.password)) {
             res.json(user)
         }
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
+userController.getUserById = async (req, res) => {
+    try {
+        const user = await models.user.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.json({user})
     } catch (error) {
         res.json({error: error.message})
     }

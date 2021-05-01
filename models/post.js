@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.post.hasMany(models.comment)
+      models.post.belongsTo(models.user)
+      models.post.belongsToMany(models.user, { through : 'comment' })
+      models.post.belongsTo(models.subreddit)
     }
   };
   post.init({
@@ -28,8 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     userId: DataTypes.INTEGER,
-    numLikes: DataTypes.INTEGER,
-    numDislikes: DataTypes.INTEGER
+    numlikes: DataTypes.INTEGER,
+    numdislikes: DataTypes.INTEGER,
+    subredditId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'post',

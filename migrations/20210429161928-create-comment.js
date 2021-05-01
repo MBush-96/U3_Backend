@@ -11,10 +11,10 @@ module.exports = {
       body: {
         type: Sequelize.STRING
       },
-      numLikes: {
+      numlikes: {
         type: Sequelize.INTEGER
       },
-      numDislikes: {
+      numdislikes: {
         type: Sequelize.INTEGER
       },
       userId: {

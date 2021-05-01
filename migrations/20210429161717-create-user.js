@@ -22,10 +22,10 @@ module.exports = {
       karma: {
         type: Sequelize.INTEGER
       },
-      profileImage: {
+      profileimage: {
         type: Sequelize.STRING
       },
-      followedSubs: {
+      followedsubs: {
         type: Sequelize.STRING
       },
       createdAt: {
