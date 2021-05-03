@@ -17,4 +17,19 @@ postController.newPost = async (req, res) => {
     }
 }
 
+postController.liked = async (req, res) => {
+    try {
+        const post = await models.post.findOne({
+            where: {
+                id: req.body.postId
+            }
+        })
+        post.update({
+            numlikes: post.numlikes += 1
+        })
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
 module.exports = postController

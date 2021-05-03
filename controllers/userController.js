@@ -48,5 +48,19 @@ userController.getUserById = async (req, res) => {
     }
 }
 
+userController.getAllPostsByUserId = async (req, res) => {
+    const id = parseInt(req.body.userId)
+    try {
+        const post = await models.post.findAll({
+            where: {
+                userId: id
+            }
+        })
+        res.json({post})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
 
 module.exports = userController
