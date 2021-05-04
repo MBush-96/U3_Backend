@@ -17,6 +17,19 @@ postController.newPost = async (req, res) => {
     }
 }
 
+postController.getPostById = async (req, res) => {
+    try {
+        const post = await models.post.findOne({
+            where: {
+                id: parseInt(req.params.id)
+            }
+        })
+        res.json({post})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
 postController.liked = async (req, res) => {
     try {
         const post = await models.post.findOne({
@@ -27,6 +40,23 @@ postController.liked = async (req, res) => {
         post.update({
             numlikes: post.numlikes += 1
         })
+        res.json({post})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
+postController.disliked = async (req, res) => {
+    try {
+        const post = await models.post.findOne({
+            where: {
+                id: req.body.postId
+            }
+        })
+        post.update({
+            numlikes: post.numlikes -= 1
+        })
+        res.json({post})
     } catch (error) {
         res.json({error: error.message})
     }

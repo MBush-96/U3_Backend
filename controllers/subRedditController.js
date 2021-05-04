@@ -30,7 +30,8 @@ subRedditController.getAllPosts = async (req, res) => {
         const posts = await models.post.findAll({
             where: {
                 subredditId: req.body.subredditId
-            }
+            },
+            order: [['id', 'ASC']]
         })
         res.json({posts})
     } catch (error) {

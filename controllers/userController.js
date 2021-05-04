@@ -62,5 +62,14 @@ userController.getAllPostsByUserId = async (req, res) => {
     }
 }
 
+userController.getAllUsers = async (req, res) => {
+    try {
+        const users = await models.user.findAll()
+        res.json({users})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
+
 
 module.exports = userController
