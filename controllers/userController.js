@@ -71,5 +71,26 @@ userController.getAllUsers = async (req, res) => {
     }
 }
 
+userController.updateKarma = async (req, res) => {
+    try {
+        const user = await models.user.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        if(req.body.fork === 'dislike') {
+            user.update({
+                karma: user.karma -= 1
+            })
+        } else {
+            user.update({
+                karma: user.karma += 1 
+            })
+        }
+        res.json({user})
+    } catch (error) {
+        res.json({error: error.message})
+    }
+}
 
 module.exports = userController
